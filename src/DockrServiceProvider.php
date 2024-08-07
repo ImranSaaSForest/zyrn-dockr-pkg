@@ -13,7 +13,6 @@ class DockrServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        dd(1);
         // Register commands and bindings here
         $this->commands([
             \Zyrn\DockrPkg\Console\Commands\StartDockerCommand::class,
@@ -28,7 +27,6 @@ class DockrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        dd(2);
         // Ensure this is correctly called
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -38,8 +36,8 @@ class DockrServiceProvider extends ServiceProvider
         
         // Run commands if desired (ensure these commands are defined)
         if ($this->app->runningInConsole()) {
-            $this->call('dockr:check'); // This needs to be a valid Artisan command
-            $this->call('dockr:start'); // This needs to be a valid Artisan command
+            \Artisan::call('dockr:check'); // This needs to be a valid Artisan command
+            \Artisan::call('dockr:start'); // This needs to be a valid Artisan command
         }
     }
 }
