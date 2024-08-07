@@ -14,7 +14,7 @@ class DockrServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Register commands here
+        // Register commands and bindings here
         $this->commands([
             \Zyrn\DockrPkg\Console\Commands\StartDockerCommand::class,
             \Zyrn\DockrPkg\Console\Commands\CheckDockerCommand::class,
