@@ -13,6 +13,7 @@ class DockrServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        dd(1);
         // Register commands and bindings here
         $this->commands([
             \Zyrn\DockrPkg\Console\Commands\StartDockerCommand::class,
@@ -27,6 +28,7 @@ class DockrServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        dd(2);
         // Ensure this is correctly called
         if ($this->app->runningInConsole()) {
             $this->publishes([
