@@ -1,9 +1,6 @@
 {
     "name": "zyrn/dockr-pkg",
     "description": "A Composer package to set up Docker containers with PHP 8.1, MySQL 8, and Nginx.",
-    "require": {
-        "zyrn/dockr-pkg": "^1.0"
-    },
     "scripts": {
         "post-install-cmd": [
             "php vendor/zyrn/dockr-pkg/check_docker.php",
