@@ -17,6 +17,8 @@ class DockrServiceProvider extends ServiceProvider
         $this->commands([
             \Zyrn\DockrPkg\Console\Commands\StartDockerCommand::class,
             \Zyrn\DockrPkg\Console\Commands\CheckDockerCommand::class,
+            \Zyrn\DockrPkg\Console\Commands\InstallPhpVersionCommand::class,
+            
         ]);
     }
 
