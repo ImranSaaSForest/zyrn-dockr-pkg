@@ -1,6 +1,8 @@
 version: '3.8'
 
 services:
+
+# Nginx
   nginx:
     image: nginx:latest
     ports:
@@ -11,11 +13,30 @@ services:
       - php
       - mysql
 
+# PHP
   php:
     image: php:8.1-fpm
+    container_name: laravel_app
     volumes:
       - ./php:/var/www/html
+  
+# Redis Service (Optional)
+  redis:
+    image: redis:latest
+    container_name: laravel_redis
+    networks:
+      - laravel
+  
+# Mailhog Service (Optional)
+  mailhog:
+    image: mailhog/mailhog
+    container_name: laravel_mailhog
+    ports:
+      - "8025:8025"
+    networks:
+      - laravel
 
+# MySQL
   mysql:
     image: mysql:8
     environment:
