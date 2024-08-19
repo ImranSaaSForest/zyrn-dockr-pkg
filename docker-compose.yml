@@ -1,8 +1,7 @@
 version: '3.8'
 
 services:
-
-# Nginx
+  # Nginx
   nginx:
     image: nginx:latest
     ports:
@@ -13,21 +12,21 @@ services:
       - php
       - mysql
 
-# PHP
+  # PHP
   php:
     image: php:8.1-fpm
     container_name: laravel_app
     volumes:
-      - ./php:/var/www/html
-  
-# Redis Service (Optional)
+      - ./:/var/www/html  # Assuming the whole Laravel project directory needs to be shared
+
+  # Redis Service (Optional)
   redis:
     image: redis:latest
     container_name: laravel_redis
     networks:
       - laravel
   
-# Mailhog Service (Optional)
+  # Mailhog Service (Optional)
   mailhog:
     image: mailhog/mailhog
     container_name: laravel_mailhog
@@ -36,7 +35,7 @@ services:
     networks:
       - laravel
 
-# MySQL
+  # MySQL
   mysql:
     image: mysql:8
     environment:
@@ -48,6 +47,13 @@ services:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - laravel  # Added MySQL to the custom network as well
+
+networks:
+  laravel:  # This defines the custom network
+    driver: bridge
 
 volumes:
   mysql_data:
+    driver: local
